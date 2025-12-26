@@ -13,6 +13,7 @@ if (!defined('ADMIN_PAGE')) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $page_title ?? SYSTEM_NAME; ?> - <?php echo SYSTEM_NAME; ?></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/admin.css">
 </head>
 <body>
@@ -26,33 +27,33 @@ if (!defined('ADMIN_PAGE')) {
             
             <nav class="sidebar-nav">
                 <a href="index.php" class="nav-item <?php echo ($current_page === 'dashboard') ? 'active' : ''; ?>">
-                    <span class="nav-icon">📊</span>
+                    <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
                     <span class="nav-text">Dashboard</span>
                 </a>
                 
                 <a href="pcs.php" class="nav-item <?php echo ($current_page === 'pcs') ? 'active' : ''; ?>">
-                    <span class="nav-icon">💻</span>
+                    <span class="nav-icon"><i class="fas fa-desktop"></i></span>
                     <span class="nav-text">Gestión de PCs</span>
                 </a>
                 
                 <a href="pricing.php" class="nav-item <?php echo ($current_page === 'pricing') ? 'active' : ''; ?>">
-                    <span class="nav-icon">💰</span>
+                    <span class="nav-icon"><i class="fas fa-dollar-sign"></i></span>
                     <span class="nav-text">Tarifas</span>
                 </a>
                 
                 <a href="reports.php" class="nav-item <?php echo ($current_page === 'reports') ? 'active' : ''; ?>">
-                    <span class="nav-icon">📈</span>
+                    <span class="nav-icon"><i class="fas fa-chart-bar"></i></span>
                     <span class="nav-text">Reportes</span>
                 </a>
                 
                 <a href="settings.php" class="nav-item <?php echo ($current_page === 'settings') ? 'active' : ''; ?>">
-                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-icon"><i class="fas fa-cog"></i></span>
                     <span class="nav-text">Configuración</span>
                 </a>
                 
                 <?php if (is_admin()): ?>
                 <a href="users.php" class="nav-item <?php echo ($current_page === 'users') ? 'active' : ''; ?>">
-                    <span class="nav-icon">👥</span>
+                    <span class="nav-icon"><i class="fas fa-users"></i></span>
                     <span class="nav-text">Usuarios</span>
                 </a>
                 <?php endif; ?>

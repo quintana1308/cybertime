@@ -40,14 +40,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($step == 3) {
         // Configurar base de datos
         $db_host = $_POST['db_host'] ?? 'localhost';
+        $db_port = $_POST['db_port'] ?? '3306';
         $db_name = $_POST['db_name'] ?? 'cybertime';
-        $db_user = $_POST['db_user'] ?? 'root';
-        $db_pass = $_POST['db_pass'] ?? '';
+        $db_user = $_POST['db_user'] ?? 'sistemas';
+        $db_pass = $_POST['db_pass'] ?? 'adn';
         $server_ip = $_POST['server_ip'] ?? '192.168.1.100';
         
         try {
             // Probar conexión
-            $pdo = new PDO("mysql:host=$db_host", $db_user, $db_pass);
+            $pdo = new PDO("mysql:host=$db_host;port=$db_port", $db_user, $db_pass);
             
             // Crear base de datos si no existe
             $pdo->exec("CREATE DATABASE IF NOT EXISTS $db_name CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
@@ -55,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Guardar en sesión
             $_SESSION['install'] = [
                 'db_host' => $db_host,
+                'db_port' => $db_port,
                 'db_name' => $db_name,
                 'db_user' => $db_user,
                 'db_pass' => $db_pass,
@@ -76,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             try {
                 $pdo = new PDO(
-                    "mysql:host={$install_data['db_host']};dbname={$install_data['db_name']}",
+                    "mysql:host={$install_data['db_host']};port={$install_data['db_port']};dbname={$install_data['db_name']}",
                     $install_data['db_user'],
                     $install_data['db_pass']
                 );
@@ -117,6 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $config_content = str_replace("define('DB_NAME', 'cybertime');", "define('DB_NAME', '{$install_data['db_name']}');", $config_content);
             $config_content = str_replace("define('DB_USER', 'root');", "define('DB_USER', '{$install_data['db_user']}');", $config_content);
             $config_content = str_replace("define('DB_PASS', '');", "define('DB_PASS', '{$install_data['db_pass']}');", $config_content);
+            $config_content = str_replace("define('DB_PORT', 3306);", "define('DB_PORT', {$install_data['db_port']});", $config_content);
             $config_content = str_replace("define('SERVER_IP', '192.168.1.100');", "define('SERVER_IP', '{$install_data['server_ip']}');", $config_content);
             
             // Guardar
@@ -137,6 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instalador - CyberTime</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -334,7 +338,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="installer">
         <div class="header">
-            <h1>🖥️ CyberTime</h1>
+            <h1><i class="fas fa-desktop"></i> CyberTime</h1>
             <p>Asistente de Instalación</p>
         </div>
         
@@ -394,6 +398,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="form-group">
                             <label>Host de Base de Datos</label>
                             <input type="text" name="db_host" class="form-control" value="localhost" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Puerto de Base de Datos</label>
+                            <input type="number" name="db_port" class="form-control" value="3306" required>
+                            <small>Puerto por defecto: 3306 (XAMPP) o 3309 (MariaDB independiente)</small>
                         </div>
                         
                         <div class="form-group">

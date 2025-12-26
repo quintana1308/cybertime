@@ -193,16 +193,30 @@ function escape_html($text) {
  * Formatear fecha
  * 
  * @param string $date Fecha a formatear
- * @param string $format Formato (opcional)
  * @return string Fecha formateada
  */
-function format_date($date, $format = null) {
-    if ($format === null) {
-        $format = DATETIME_FORMAT;
+function format_date($date) {
+    if (empty($date)) {
+        return '';
     }
     
     $timestamp = strtotime($date);
-    return date($format, $timestamp);
+    return date('d/m/Y', $timestamp);
+}
+
+/**
+ * Formatear fecha y hora
+ * 
+ * @param string $datetime Fecha y hora a formatear
+ * @return string Fecha y hora formateada
+ */
+function format_datetime($datetime) {
+    if (empty($datetime)) {
+        return '';
+    }
+    
+    $timestamp = strtotime($datetime);
+    return date('d/m/Y H:i', $timestamp);
 }
 
 /**

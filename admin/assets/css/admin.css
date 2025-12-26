@@ -260,6 +260,50 @@ body {
 
 .stat-icon {
     font-size: 48px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    background: var(--light-color);
+}
+
+.stat-card .stat-icon i {
+    font-size: 36px;
+    color: var(--primary-color);
+}
+
+.stat-card.stat-success .stat-icon {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+}
+
+.stat-card.stat-success .stat-icon i {
+    color: #059669;
+}
+
+.stat-card.stat-info .stat-icon {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+}
+
+.stat-card.stat-info .stat-icon i {
+    color: #2563eb;
+}
+
+.stat-card.stat-warning .stat-icon {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+}
+
+.stat-card.stat-warning .stat-icon i {
+    color: #d97706;
+}
+
+.stat-card:first-child .stat-icon {
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+}
+
+.stat-card:first-child .stat-icon i {
+    color: #4f46e5;
 }
 
 .stat-content h3 {

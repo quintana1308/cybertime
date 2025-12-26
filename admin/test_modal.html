@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Modal</title>
+    <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+    <h1>Test de Modal</h1>
+    <button onclick="testModal()">Abrir Modal de Prueba</button>
+    
+    <div id="assignTimeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Modal de Prueba</h2>
+                <button class="modal-close" onclick="closeTestModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Si ves esto, el modal funciona correctamente.</p>
+                <button onclick="closeTestModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function testModal() {
+            console.log('testModal llamado');
+            const modal = document.getElementById('assignTimeModal');
+            console.log('Modal encontrado:', modal);
+            if (modal) {
+                modal.classList.add('active');
+                console.log('Clase active agregada');
+            }
+        }
+        
+        function closeTestModal() {
+            const modal = document.getElementById('assignTimeModal');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -25,13 +25,14 @@ if ($pc_id) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo BUSINESS_NAME; ?> - PC Cliente</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/client.css">
 </head>
 <body>
     <!-- Pantalla de Bloqueo -->
     <div id="lockScreen" class="lock-screen active">
         <div class="lock-content">
-            <div class="lock-icon">🔒</div>
+            <div class="lock-icon"><i class="fas fa-lock"></i></div>
             <h1>PC BLOQUEADA</h1>
             <p class="lock-message">Esperando asignación de tiempo</p>
             <div class="business-info">
@@ -79,7 +80,7 @@ if ($pc_id) {
         <!-- Alerta de tiempo bajo -->
         <div id="lowTimeAlert" class="low-time-alert">
             <div class="alert-content">
-                <span class="alert-icon">⚠️</span>
+                <span class="alert-icon"><i class="fas fa-exclamation-triangle"></i></span>
                 <span class="alert-text">¡Quedan menos de 5 minutos!</span>
             </div>
         </div>
@@ -88,7 +89,7 @@ if ($pc_id) {
     <!-- Pantalla de Desconexión -->
     <div id="disconnectScreen" class="disconnect-screen">
         <div class="disconnect-content">
-            <div class="disconnect-icon">⚠️</div>
+            <div class="disconnect-icon"><i class="fas fa-exclamation-triangle"></i></div>
             <h1>CONEXIÓN PERDIDA</h1>
             <p>Intentando reconectar con el servidor...</p>
             <div class="spinner"></div>

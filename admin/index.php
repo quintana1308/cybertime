@@ -77,7 +77,7 @@ include 'includes/header.php';
 <!-- Estadísticas -->
 <div class="stats-grid">
     <div class="stat-card">
-        <div class="stat-icon">💻</div>
+        <div class="stat-icon"><i class="fas fa-server"></i></div>
         <div class="stat-content">
             <h3><?php echo $total_pcs; ?></h3>
             <p>Total PCs</p>
@@ -85,7 +85,7 @@ include 'includes/header.php';
     </div>
     
     <div class="stat-card stat-success">
-        <div class="stat-icon">✅</div>
+        <div class="stat-icon"><i class="fas fa-play-circle"></i></div>
         <div class="stat-content">
             <h3><?php echo $pcs_in_use; ?></h3>
             <p>En Uso</p>
@@ -93,7 +93,7 @@ include 'includes/header.php';
     </div>
     
     <div class="stat-card stat-info">
-        <div class="stat-icon">🟢</div>
+        <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
         <div class="stat-content">
             <h3><?php echo $pcs_available; ?></h3>
             <p>Disponibles</p>
@@ -101,7 +101,7 @@ include 'includes/header.php';
     </div>
     
     <div class="stat-card stat-warning">
-        <div class="stat-icon">💰</div>
+        <div class="stat-icon"><i class="fas fa-coins"></i></div>
         <div class="stat-content">
             <h3><?php echo format_price($daily_revenue); ?></h3>
             <p>Ingresos Hoy</p>
@@ -113,7 +113,7 @@ include 'includes/header.php';
 <div class="section-header">
     <h2>Estado de las PCs</h2>
     <div class="section-actions">
-        <button class="btn btn-primary" onclick="refreshPCs()">🔄 Actualizar</button>
+        <button class="btn btn-primary" onclick="refreshPCs()"><i class="fas fa-sync-alt"></i> Actualizar</button>
     </div>
 </div>
 
@@ -149,20 +149,20 @@ include 'includes/header.php';
                     
                     <div class="pc-actions">
                         <button class="btn btn-sm btn-warning" onclick="pauseTime(<?php echo $pc['session_id']; ?>)">
-                            ⏸️ Pausar
+                            <i class="fas fa-pause"></i> Pausar
                         </button>
                         <button class="btn btn-sm btn-success" onclick="addTime(<?php echo $pc['session_id']; ?>)">
-                            ➕ Agregar
+                            <i class="fas fa-plus"></i> Agregar
                         </button>
                         <button class="btn btn-sm btn-danger" onclick="stopTime(<?php echo $pc['session_id']; ?>)">
-                            ⏹️ Detener
+                            <i class="fas fa-stop"></i> Detener
                         </button>
                     </div>
                     
                 <?php elseif ($pc['status'] === 'pausada' && $pc['session_id']): ?>
                     <div class="pc-time">
                         <div class="time-display paused">
-                            ⏸️ PAUSADA
+                            <i class="fas fa-pause-circle"></i> PAUSADA
                         </div>
                         <div class="time-remaining">
                             Tiempo restante: <?php echo format_time($pc['remaining_time']); ?>
@@ -171,10 +171,10 @@ include 'includes/header.php';
                     
                     <div class="pc-actions">
                         <button class="btn btn-sm btn-success" onclick="resumeTime(<?php echo $pc['session_id']; ?>)">
-                            ▶️ Reanudar
+                            <i class="fas fa-play"></i> Reanudar
                         </button>
                         <button class="btn btn-sm btn-danger" onclick="stopTime(<?php echo $pc['session_id']; ?>)">
-                            ⏹️ Detener
+                            <i class="fas fa-stop"></i> Detener
                         </button>
                     </div>
                     
@@ -185,7 +185,7 @@ include 'includes/header.php';
                     
                     <div class="pc-actions">
                         <button class="btn btn-sm btn-primary" onclick="assignTime(<?php echo $pc['id']; ?>)">
-                            ▶️ Asignar Tiempo
+                            <i class="fas fa-play"></i> Asignar Tiempo
                         </button>
                     </div>
                 <?php endif; ?>
@@ -193,7 +193,7 @@ include 'includes/header.php';
             
             <?php if ($pc['location']): ?>
                 <div class="pc-footer">
-                    <small>📍 <?php echo escape_html($pc['location']); ?></small>
+                    <small><i class="fas fa-map-marker-alt"></i> <?php echo escape_html($pc['location']); ?></small>
                 </div>
             <?php endif; ?>
         </div>
@@ -219,20 +219,20 @@ include 'includes/header.php';
                 <input type="hidden" id="assign_pc_id" name="pc_id">
                 
                 <div class="form-group">
-                    <label for="client_name">Nombre del Cliente (Opcional)</label>
-                    <input type="text" id="client_name" name="client_name" class="form-control">
-                </div>
-                
-                <div class="form-group">
-                    <label>Seleccionar Tarifa</label>
-                    <div id="pricingOptions" class="pricing-grid">
-                        <!-- Se cargará dinámicamente -->
+                    <label>Selecciona una tarifa:</label>
+                    <div id="pricingOptions" class="pricing-options-grid">
+                        <!-- Se cargarán dinámicamente -->
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="custom_minutes">O ingresar minutos personalizados</label>
-                    <input type="number" id="custom_minutes" name="custom_minutes" class="form-control" min="1" placeholder="Minutos">
+                    <label for="custom_minutes">O ingresa minutos personalizados:</label>
+                    <input type="number" id="custom_minutes" name="custom_minutes" class="form-control" min="1" placeholder="Ej: 30">
+                </div>
+                
+                <div class="form-group">
+                    <label for="client_name">Nombre del cliente (opcional):</label>
+                    <input type="text" id="client_name" name="client_name" class="form-control" placeholder="Nombre del cliente">
                 </div>
                 
                 <div class="modal-actions">
@@ -243,6 +243,49 @@ include 'includes/header.php';
         </div>
     </div>
 </div>
+
+<style>
+.pricing-options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.pricing-option {
+    padding: 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.pricing-option:hover {
+    border-color: var(--primary-color);
+    background: var(--light-color);
+}
+
+.pricing-option.selected {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+}
+
+.pricing-option .price {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.pricing-option .time {
+    font-size: 14px;
+}
+
+.pricing-option.selected .time {
+    color: white;
+}
+</style>
 
 <!-- Modal para agregar tiempo -->
 <div id="addTimeModal" class="modal">
@@ -270,15 +313,9 @@ include 'includes/header.php';
 </div>
 
 <script>
-// Configuración global
+// Configuración global para admin.js
 const API_BASE = '<?php echo BASE_URL; ?>/api';
 const POLLING_INTERVAL = <?php echo POLLING_INTERVAL * 1000; ?>;
-
-// Actualizar PCs automáticamente
-setInterval(refreshPCs, POLLING_INTERVAL);
-
-// Actualizar contadores de tiempo cada segundo
-setInterval(updateTimeDisplays, 1000);
 </script>
 
 <?php include 'includes/footer.php'; ?>

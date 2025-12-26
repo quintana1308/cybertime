@@ -130,18 +130,23 @@ function updateTimeDisplays() {
  * Asignar tiempo a una PC
  */
 async function assignTime(pcId) {
-    const pc = currentPCs.find(p => p.id === pcId);
-    if (!pc) return;
+    console.log('assignTime llamado con PC ID:', pcId);
     
     // Abrir modal
     openModal('assignTimeModal');
     
     // Establecer PC ID
-    document.getElementById('assign_pc_id').value = pcId;
+    const pcIdInput = document.getElementById('assign_pc_id');
+    if (pcIdInput) {
+        pcIdInput.value = pcId;
+    }
     
     // Limpiar formulario
-    document.getElementById('client_name').value = '';
-    document.getElementById('custom_minutes').value = '';
+    const clientNameInput = document.getElementById('client_name');
+    const customMinutesInput = document.getElementById('custom_minutes');
+    
+    if (clientNameInput) clientNameInput.value = '';
+    if (customMinutesInput) customMinutesInput.value = '';
     
     // Cargar opciones de tarifas
     loadPricingOptions();
@@ -368,9 +373,13 @@ async function stopTime(sessionId) {
  * Abrir modal
  */
 function openModal(modalId) {
+    console.log('Abriendo modal:', modalId);
     const modal = document.getElementById(modalId);
     if (modal) {
         modal.classList.add('active');
+        console.log('Modal abierto correctamente');
+    } else {
+        console.error('Modal no encontrado:', modalId);
     }
 }
 
