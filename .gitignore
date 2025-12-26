@@ -1,0 +1,43 @@
+# CYBERTIME - Archivos a ignorar en Git
+
+# Configuración local
+config.php
+
+# Logs
+logs/*.log
+logs/*.txt
+!logs/.htaccess
+
+# Respaldos
+backups/*.sql
+backups/*.zip
+!backups/.htaccess
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Temporales
+*.tmp
+*.temp
+*.cache
+
+# Composer (si se usa en el futuro)
+vendor/
+composer.lock
+
+# Node modules (si se usa en el futuro)
+node_modules/
+package-lock.json
+
+# Archivos de desarrollo
+*.dev.php
+test.php
+debug.php
